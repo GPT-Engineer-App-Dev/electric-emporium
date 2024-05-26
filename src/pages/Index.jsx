@@ -1,5 +1,6 @@
-import { Box, Container, Flex, Heading, HStack, Image, Link, SimpleGrid, Text, VStack } from "@chakra-ui/react";
-import { FaShoppingCart, FaUser } from "react-icons/fa";
+import { Box, Container, Flex, Heading, HStack, Image, Link, SimpleGrid, Text, VStack, Input, InputGroup, InputRightElement, IconButton } from "@chakra-ui/react";
+import { FaShoppingCart, FaUser, FaSearch } from "react-icons/fa";
+import { useState } from "react";
 
 const products = [
   { id: 1, name: "Smartphone", price: "$699", image: "https://via.placeholder.com/150" },
@@ -9,6 +10,12 @@ const products = [
 ];
 
 const Index = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = () => {
+    // Implement search logic here
+    console.log("Searching for:", searchQuery);
+  };
   return (
     <Container maxW="container.xl" p={0}>
       <Flex as="nav" bg="blue.800" color="white" p={4} justify="space-between" align="center">
@@ -18,6 +25,22 @@ const Index = () => {
           <Link href="#">Products</Link>
           <Link href="#">About</Link>
           <Link href="#">Contact</Link>
+          <InputGroup>
+            <Input
+              placeholder="Search products"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              bg="white"
+              color="black"
+            />
+            <InputRightElement>
+              <IconButton
+                aria-label="Search"
+                icon={<FaSearch />}
+                onClick={handleSearch}
+              />
+            </InputRightElement>
+          </InputGroup>
           <FaShoppingCart />
           <FaUser />
         </HStack>
